@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: Add print-specific styles for better PDF output */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  .no-print {
+    display: none;
+  }
+}
