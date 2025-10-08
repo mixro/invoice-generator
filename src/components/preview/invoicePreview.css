@@ -99,9 +99,11 @@
 }
 
 .invoice_preview_table table thead tr th {
-    background: #dddddd;
+    background: #cccccc;
     padding: 8px;
     font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-color);
 }
 
 .invoice_preview_table table, th, td {

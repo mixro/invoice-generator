@@ -1,73 +1,136 @@
-# React + TypeScript + Vite
+# Proforma Invoice Generator - Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-v18.x-blue)
+![Vite](https://img.shields.io/badge/Vite-v5.x-yellow)
+![react-to-pdf](https://img.shields.io/badge/react--to--pdf-v1.x-green)
 
-Currently, two official plugins are available:
+The Proforma Invoice Generator is a React-powered web tool designed to build, view, and save invoices in PDF format. It connects user inputs with automated calculations for totals, taxes, and summaries, offering a simple interface for handling billing details specific to engineering and tech services.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
+- [Introduction](#introduction)
+- [Design](#design)
+- [Tools Used](#tools-used)
+- [Installation Guide](#installation-guide)
+- [File Organization](#file-organization)
+- [Screens and Elements](#screens-and-elements)
+- [User Verification](#user-verification)
+- [Data Handling](#data-handling)
+- [Validation](#validation)
+- [Hosting](#hosting)
+- [Issue Resolution](#issue-resolution)
+- [Protection Measures](#protection-measures)
+- [Upcoming Enhancements](#upcoming-enhancements)
+- [Assistance](#assistance)
 
-## React Compiler
+## Introduction
+This web app facilitates the creation of proforma invoices, allowing entry of client info, items, charges, and automatic computation of sums including VAT. Built with React for interactive elements, Vite for quick builds, and react-to-pdf for document export. Highlights include:
+- Form-based data entry with expandable item lists.
+- Real-time previews of invoice layouts.
+- PDF generation matching custom formats.
+- Support for currency formatting and tax rates.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Design
+### Elements
+- **React Framework**: Constructs the single-page app using modular parts.
+- **CSS Styling**: Applies custom rules for layout and appearance.
+- **PDF Export**: Utilizes react-to-pdf to convert views to files.
+- **Data Flow**: Employs hooks for state and form management.
+- **Visuals**: Includes company branding and table displays.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Folder Layout
+```
+invoice-generator/
+├── public/           # Public assets (e.g., icons)
+├── src/              # Core code
+│   ├── assets/       # Images and media
+│   ├── components/   # Shared UI pieces (e.g., InvoiceForm.tsx)
+│   ├── App.tsx       # Central component
+│   ├── index.css     # Global styles
+│   └── main.tsx      # Startup file
+├── index.html        # Base HTML
+├── package.json      # Dependencies list
+├── tsconfig.json     # TypeScript settings
+├── tsconfig.node.json# Vite TypeScript config
+└── vite.config.ts    # Build config
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Tools Used
+- **React**: v18.3.1 - UI construction.
+- **Vite**: v5.4.1 - Development server and bundler.
+- **react-to-pdf**: v1.0.1 - PDF creation from components.
+- **TypeScript**: v5.5.3 - Type safety.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Installation Guide
+1. **Download the code**:
+   ```bash
+   git clone https://github.com/your-repo/invoice-generator
+   cd invoice-generator
+   ```
+2. **Add packages**:
+   ```bash
+   npm install
+   ```
+3. Configure settings in `.env` if needed (none required by default).
+4. **Launch locally**:
+   ```bash
+   npm run dev
+   ```
+5. View at `http://localhost:5173`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## File Organization
+The app uses a modular setup:
+- **Shared Elements**: `InvoiceForm` for inputs, `InvoicePreview` for displays.
+- **Main Logic**: `App.tsx` manages previews and exports.
+- **Styles**: `index.css` defines visuals consistently.
+- **Data**: Local state tracks invoice details.
+
+## Screens and Elements
+- **Main Screen**: Form for details, preview area, and export button.
+- **Form Component**: Handles entries like numbers, dates, items.
+- **Preview Component**: Shows formatted output with tables and totals.
+
+## User Verification
+No authentication implemented; suitable for local or single-user scenarios.
+
+## Data Handling
+- **React Hooks**: `useState` for form data, `usePDF` for exports.
+- **Calculations**: Reduces arrays for sums, applies 18% VAT.
+
+## Validation
+- **Configuration**: Add testing tools if desired:
+  ```bash
+  npm install --save-dev @testing-library/react jest
+  ```
+- **Execute checks**:
+  ```bash
+  npm test
+  ```
+  Covers rendering and interactions.
+
+## Hosting
+1. **Build Locally**:
+   ```bash
+   npm run build
+   ```
+   Produces files in `dist/`.
+2. **Check Build**:
+   ```bash
+   npm run preview
+   ```
+3. **Rollout**: Upload `dist/` to platforms like Vercel or GitHub Pages. No backend needed.
+
+## Issue Resolution
+- **Form Errors**: Shown via browser alerts.
+- **Export Issues**: Log to console for debugging.
+
+## Protection Measures
+- **Input Checks**: Browser validation on forms.
+- **No External Data**: Client-side only, minimal risks.
+
+## Upcoming Enhancements
+- Add item deletion options.
+- Support multiple currencies.
+- Include print optimizations.
+
+## Assistance
+For support, refer to the repository's issue tracker or contact the maintainer via the provided channels in the repository.

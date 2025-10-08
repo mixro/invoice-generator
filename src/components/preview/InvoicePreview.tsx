@@ -80,7 +80,7 @@ export default function InvoicePreview({ data }: { data: InvoiceData }) {
         <div className="invoice_preview_table">
           <table>
             <thead>
-              <tr className="bg-gray-200">
+              <tr>
                 <th>S/N</th>
                 <th>Description</th>
                 <th>Unit</th>
