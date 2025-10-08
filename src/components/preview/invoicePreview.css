@@ -29,11 +29,13 @@
 .invoice-header-desc h1 {
     font-size: 38px;
     margin-bottom: 10px;
+    color: var(--primary-color);
 }
 
 .invoice-header-desc p {
     font-size: 28px;
     margin-bottom: 10px;
+    color: var(--third-color);
 }
 
 
@@ -45,7 +47,8 @@
 .invoice_preview_receiver h2 {
     text-align: center;
     font-size: 36px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    color: var(--primary-color);
 }
 
 .invoice_preview_billed {
@@ -53,6 +56,7 @@
     font-weight: 600;
     margin-left: 5px;
     margin-bottom: 15px;
+    color: var(--third-color);
 }
 
     /*------------- invoice receiver info ---------------*/
@@ -95,7 +99,7 @@
 }
 
 .invoice_preview_table table thead tr th {
-    background: rgb(190, 190, 190);
+    background: #dddddd;
     padding: 8px;
     font-size: 18px;
 }

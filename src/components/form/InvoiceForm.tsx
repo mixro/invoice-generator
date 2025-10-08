@@ -84,7 +84,7 @@ export default function InvoiceForm({ onGenerate }: InvoiceFormProps) {
         </div>
         <div className="form-input">
           <label className="form_label">Due Date:</label>
-          <input type="text" value={dueDate} onChange={(e) => setDueDate(e.target.value)} className="formInput_text" />
+          <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} className="formInput_text" />
         </div>
         <div className="form-input">
           <label className="form_label">Billed To Title:</label>

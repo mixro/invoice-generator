@@ -1,11 +1,11 @@
-import Invoice from "./pages/home/Invoice";
+import InvoiceComp from "./pages/home/InvoiceComp";
 
 
 function App() {
 
   return (
     <div className="App">
-      <Invoice />
+      <InvoiceComp />
     </div>
   );
 }

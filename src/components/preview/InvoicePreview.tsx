@@ -81,12 +81,12 @@ export default function InvoicePreview({ data }: { data: InvoiceData }) {
           <table>
             <thead>
               <tr className="bg-gray-200">
-                <th className="border border-gray-400 p-2">S/N</th>
-                <th className="border border-gray-400 p-2">Description</th>
-                <th className="border border-gray-400 p-2">Unit</th>
-                <th className="border border-gray-400 p-2">Quantity</th>
-                <th className="border border-gray-400 p-2">Unit Price (TSH)</th>
-                <th className="border border-gray-400 p-2">Amount (TSH)</th>
+                <th>S/N</th>
+                <th>Description</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>Unit Price (TSH)</th>
+                <th>Amount (TSH)</th>
               </tr>
             </thead>
             <tbody>
@@ -101,31 +101,38 @@ export default function InvoicePreview({ data }: { data: InvoiceData }) {
                 </tr>
               ))}
               <tr>
-                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">Sub Total for Material cost.</td>
+                <td colSpan={5} style={{ textAlign: 'right', fontWeight: 600, padding: 12}}>Sub Total for Material cost.</td>
                 <td style={{ textAlign: 'right' }}>{formatNumber(subtotalMaterials)}</td>
               </tr>
               <tr>
-                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">Labor Charge</td>
+                <td colSpan={5}>Labor Charge</td>
                 <td style={{ textAlign: 'right' }}>{formatNumber(data.labor)}</td>
               </tr>
               <tr>
-                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">Transport Charges</td>
+                <td colSpan={5}>Transport Charges</td>
                 <td style={{ textAlign: 'right' }}>{formatNumber(data.transport)}</td>
               </tr>
               <tr>
-                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">TANESCO CHARGES & COMISSION DEPEND ON SITE VIST</td>
+                <td colSpan={5}>TANESCO CHARGES & COMISSION DEPEND ON SITE VIST</td>
                 <td style={{ textAlign: 'right' }}>{formatNumber(data.tanesco)}</td>
               </tr>
-              <tr>
-                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">GRAND TOTAL VAT EXCLUSIVE</td>
+              {/*<tr>
+                <td colSpan={5}>GRAND TOTAL VAT EXCLUSIVE</td>
                 <td style={{ textAlign: 'right' }}>{formatNumber(grandExclusive)}</td>
+              </tr>*/}
+              <tr>
+                <td colSpan={4} style={{border: "none"}}></td>
+                <td style={{ textAlign: 'right', background: "#dddddd", }}>Subtotal</td>
+                <td style={{ textAlign: 'right', background: "#dddddd", }}>{formatNumber(grandExclusive)}</td>
               </tr>
               <tr>
-                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">VAT 18%</td>
+                <td colSpan={4} style={{border: "none"}}></td>
+                <td style={{ textAlign: 'right', background: "#dddddd", }}>VAT 18%</td>
                 <td style={{ textAlign: 'right' }}>{formatNumber(vat)}</td>
               </tr>
               <tr>
-                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">TOTAL</td>
+                <td colSpan={4} style={{border: "none"}}></td>
+                <td style={{ textAlign: 'right', background: "gray", color: "white" }}>TOTAL</td>
                 <td style={{ textAlign: 'right' }}>{formatNumber(total)}</td>
               </tr>
             </tbody>

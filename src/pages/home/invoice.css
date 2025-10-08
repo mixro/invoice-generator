@@ -1,7 +1,13 @@
 .container {
-    padding: 3% 4% 400px;
+    padding: 3% 4% 4%;
     min-height: 100vh;
     background: var(--background);
+    max-width: 1440px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
 }
 
 .header {

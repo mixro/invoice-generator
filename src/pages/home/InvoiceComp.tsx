@@ -25,9 +25,15 @@ interface InvoiceData {
   tanesco: number;
 }
 
-const Home = () => {
+const InvoiceComp = () => {
+    const today = new Date();
+    const hours = today.getHours();
+    const minutes = today.getMinutes();
+    const seconds = today.getSeconds();
+    const formattedDate = today.toLocaleDateString("en-US");
     const [invoiceData, setInvoiceData] = useState<InvoiceData | null>(null);
-    const { toPDF, targetRef } = usePDF({ filename: 'proforma-invoice.pdf' });
+    const { toPDF, targetRef } = usePDF({ filename: `${invoiceData?.billedToName}_proforma-invoice_${formattedDate+"_"+hours+minutes+seconds}.pdf`});
+
 
     const handleGenerate = (data: InvoiceData) => {
         setInvoiceData(data);
@@ -43,11 +49,13 @@ const Home = () => {
           <div ref={targetRef}>
             <InvoicePreview data={invoiceData} />
           </div>
-          <button onClick={() => toPDF()} className="mt-4 bg-purple-500 text-white p-2">Download PDF</button>
+          <div className='PreviewButton'>
+            <button onClick={() => toPDF()} style={{background: "purple"}}>Download PDF</button>
+          </div>
         </div>
       )}
     </div>
   )
 }
 
-export default Home
+export default InvoiceComp
