@@ -1,0 +1,10 @@
+.container {
+    padding: 3% 4% 400px;
+    min-height: 100vh;
+    background: var(--background);
+}
+
+.header {
+    margin-bottom: 20px;
+    font-weight: 600;
+}

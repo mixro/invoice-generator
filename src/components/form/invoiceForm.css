@@ -1,0 +1,90 @@
+.invoice-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+}
+
+.form-input {
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form_label {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.formInput_text {
+    border: 1px solid rgb(202, 202, 202);
+    border-radius: 5px;
+    padding: 8px 7px;
+    outline: none;
+    background: white;
+    font-size: 16px;
+    color: rgb(95, 95, 95);
+}
+
+.form-header {
+    font-weight: 500;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--blue-font);
+    font-size: 30px;
+}
+
+
+    /*----------------- form items -----------------*/
+.form-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.formItems_input {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 22%;
+}
+
+.formItems_input input {
+    margin-bottom: 20px;
+}
+
+.FormsButton {
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.FormsButton button {
+    width: 22%;
+    font-size: 18px;
+    padding: 6px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background: var(--secondary-color);
+}
+
+.PreviewButton {
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.PreviewButton button {
+    width: 36%;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    cursor: pointer;
+    color: white;
+    background: var(--blue-font);
+}
