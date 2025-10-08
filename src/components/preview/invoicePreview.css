@@ -1,0 +1,106 @@
+.invoice_preview {
+    width: 100%;
+    background: white;
+    margin-top: 60px;
+    padding: 100px 100px 70px;
+}
+
+.invoice_wrapper {
+    border: 2px solid black;
+}
+
+    /*------------- invoice header ---------------*/
+.invoice_preview_header {
+    display: flex;
+    gap: 40px;
+    padding: 20px;
+    border-bottom: 2px solid black;
+}
+
+.invoice_preview_header img {
+    width: 220px;
+    object-fit: contain;
+}
+
+.invoice-header-desc {
+    flex: 1;
+}
+
+.invoice-header-desc h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.invoice-header-desc p {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+
+    /*------------- invoice preview receiver ---------------*/
+.invoice_preview_receiver {
+    padding-top: 50px;
+}
+
+.invoice_preview_receiver h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.invoice_preview_billed {
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 5px;
+    margin-bottom: 15px;
+}
+
+    /*------------- invoice receiver info ---------------*/
+.invoice_receiver_info {
+    width: 77%;
+    border-top: 1px solid black;
+    display: flex;
+    flex-wrap: wrap
+}
+
+.invoice_receiver_details {
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.invoice_receiver_details p:first-child {
+    flex-basis: 50%;
+    padding: 5px;
+    border-right: 1px solid black;
+}
+
+.invoice_receiver_details p:last-child {
+    flex-basis: 50%;
+    padding: 5px;
+    font-weight: 600;
+}
+
+
+    /*------------- invoice preview table ---------------*/
+.invoice_preview_table {
+    padding-top: 20px;
+}
+
+.invoice_preview_table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoice_preview_table table thead tr th {
+    background: rgb(190, 190, 190);
+    padding: 8px;
+    font-size: 18px;
+}
+
+.invoice_preview_table table, th, td {
+  border: 1px solid black;
+  padding: 6px;
+}

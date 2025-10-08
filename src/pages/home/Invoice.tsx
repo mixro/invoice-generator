@@ -39,7 +39,7 @@ const Home = () => {
       <InvoiceForm onGenerate={handleGenerate} />
       {invoiceData && (
         <div className="mt-8">
-          <h2 className="text-xl font-bold mb-4">Preview</h2>
+          <h2 className="text-xl font-bold mb-4">PREVIEW</h2>
           <div ref={targetRef}>
             <InvoicePreview data={invoiceData} />
           </div>

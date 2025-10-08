@@ -1,3 +1,5 @@
+import './invoicePreview.css'
+
 interface Item {
   description: string;
   unit: string;
@@ -28,86 +30,108 @@ export default function InvoicePreview({ data }: { data: InvoiceData }) {
   const formatNumber = (num: number) => num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   return (
-    <div className="p-8 bg-white border border-gray-300 max-w-4xl mx-auto font-sans text-sm">
-      <div className="flex justify-between mb-4 items-start">
-        <img
-          src="https://media.licdn.com/dms/image/v2/D4D0BAQGIAaDBNhk0iw/company-logo_200_200/company-logo_200_200/0/1733920127968/mamodo_inc_logo?e=2147483647&v=beta&t=5y2SOIGnbo9pmL0QhrFkx849BcajHoqXaVIzvlhpGCg" // Replace with actual logo URL if available
-          alt="TANG TECH Logo"
-          className="w-24 h-24"
-        />
-        <div className="text-right">
-          <h1 className="text-2xl font-bold">TANG TECH AND ENGINEERING LTD</h1>
-          <p>P.O. Box 2233, Dar es salaam</p>
-          <p>Mobile: +255 659 801321, +255 714 376836</p>
-          <p>TIN: 168-901-461</p>
+    <div className="invoice_preview">
+      <div className="invoice_wrapper">
+        <div className="invoice_preview_header">
+          <img
+            src="/assets/logo.png" 
+            alt="TANG TECH Logo"
+            className="w-24 h-24"
+          />
+          <div className="invoice-header-desc">
+            <h1>TANG TECH AND ENGINEERING LTD</h1>
+            <p>P.O. Box 2233, Dar es salaam</p>
+            <p>Mobile: +255 659 801321, +255 714 376836</p>
+            <p>TIN: 168-901-461</p>
+          </div>
+        </div>
+        
+        <div className="invoice_preview_receiver">
+          <h2>PROFORMA INVOICE</h2>
+          <p className="invoice_preview_billed">BILLED TO: {data.billedToTitle}</p>
+          <div className="invoice_receiver_info">
+            <div className='invoice_receiver_details'>
+              <p>Invoice Number:</p>
+              <p>{data.invoiceNumber}</p>
+            </div>
+            <div className='invoice_receiver_details'>
+              <p>Date Issued:</p>
+              <p>{data.dateIssued}</p>
+            </div>
+            <div className='invoice_receiver_details'>
+              <p>Due Date:</p>
+              <p>{data.dueDate}</p>
+            </div>
+            <div className='invoice_receiver_details'>
+              <p>Name:</p>
+              <p>{data.billedToName}</p>
+            </div>
+            <div className='invoice_receiver_details'>
+              <p>Address:</p>
+              <p>{data.address}</p>
+            </div>
+            <div className='invoice_receiver_details'>
+              <p>TIN:</p>
+              <p>{data.tin}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="invoice_preview_table">
+          <table>
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="border border-gray-400 p-2">S/N</th>
+                <th className="border border-gray-400 p-2">Description</th>
+                <th className="border border-gray-400 p-2">Unit</th>
+                <th className="border border-gray-400 p-2">Quantity</th>
+                <th className="border border-gray-400 p-2">Unit Price (TSH)</th>
+                <th className="border border-gray-400 p-2">Amount (TSH)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.items.map((item, index) => (
+                <tr key={index}>
+                  <td style={{ textAlign: 'center' }}>{index + 1}</td>
+                  <td>{item.description}</td>
+                  <td style={{ textAlign: 'center' }}>{item.unit}</td>
+                  <td style={{ textAlign: 'center' }}>{item.quantity}</td>
+                  <td style={{ textAlign: 'right' }}>{formatNumber(item.unitPrice)}</td>
+                  <td style={{ textAlign: 'right' }}>{formatNumber(item.quantity * item.unitPrice)}</td>
+                </tr>
+              ))}
+              <tr>
+                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">Sub Total for Material cost.</td>
+                <td style={{ textAlign: 'right' }}>{formatNumber(subtotalMaterials)}</td>
+              </tr>
+              <tr>
+                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">Labor Charge</td>
+                <td style={{ textAlign: 'right' }}>{formatNumber(data.labor)}</td>
+              </tr>
+              <tr>
+                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">Transport Charges</td>
+                <td style={{ textAlign: 'right' }}>{formatNumber(data.transport)}</td>
+              </tr>
+              <tr>
+                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">TANESCO CHARGES & COMISSION DEPEND ON SITE VIST</td>
+                <td style={{ textAlign: 'right' }}>{formatNumber(data.tanesco)}</td>
+              </tr>
+              <tr>
+                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">GRAND TOTAL VAT EXCLUSIVE</td>
+                <td style={{ textAlign: 'right' }}>{formatNumber(grandExclusive)}</td>
+              </tr>
+              <tr>
+                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">VAT 18%</td>
+                <td style={{ textAlign: 'right' }}>{formatNumber(vat)}</td>
+              </tr>
+              <tr>
+                <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">TOTAL</td>
+                <td style={{ textAlign: 'right' }}>{formatNumber(total)}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <h2 className="text-xl font-bold text-center mb-4">PROFORMA INVOICE</h2>
-      <p className="mb-4 font-bold">BILLED TO: {data.billedToTitle}</p>
-      <div className="grid grid-cols-2 gap-4 mb-4">
-        <div>
-          <p>Invoice Number: {data.invoiceNumber}</p>
-          <p>Date Issued: {data.dateIssued}</p>
-          <p>Due Date: {data.dueDate}</p>
-        </div>
-        <div>
-          <p>Name: {data.billedToName}</p>
-          <p>Address: {data.address}</p>
-          <p>TIN: {data.tin}</p>
-        </div>
-      </div>
-      <table className="w-full border-collapse mb-4 text-left">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="border border-gray-400 p-2">S/N</th>
-            <th className="border border-gray-400 p-2">Description</th>
-            <th className="border border-gray-400 p-2">Unit</th>
-            <th className="border border-gray-400 p-2">Quantity</th>
-            <th className="border border-gray-400 p-2">Unit Price (TSH)</th>
-            <th className="border border-gray-400 p-2">Amount (TSH)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.items.map((item, index) => (
-            <tr key={index}>
-              <td className="border border-gray-400 p-2">{index + 1}</td>
-              <td className="border border-gray-400 p-2">{item.description}</td>
-              <td className="border border-gray-400 p-2">{item.unit}</td>
-              <td className="border border-gray-400 p-2">{item.quantity}</td>
-              <td className="border border-gray-400 p-2">{formatNumber(item.unitPrice)}</td>
-              <td className="border border-gray-400 p-2">{formatNumber(item.quantity * item.unitPrice)}</td>
-            </tr>
-          ))}
-          <tr>
-            <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">Sub Total for Material cost.</td>
-            <td className="border border-gray-400 p-2">{formatNumber(subtotalMaterials)}</td>
-          </tr>
-          <tr>
-            <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">Labor Charge</td>
-            <td className="border border-gray-400 p-2">{formatNumber(data.labor)}</td>
-          </tr>
-          <tr>
-            <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">Transport Charges</td>
-            <td className="border border-gray-400 p-2">{formatNumber(data.transport)}</td>
-          </tr>
-          <tr>
-            <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">TANESCO CHARGES & COMISSION DEPEND ON SITE VIST</td>
-            <td className="border border-gray-400 p-2">{formatNumber(data.tanesco)}</td>
-          </tr>
-          <tr>
-            <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">GRAND TOTAL VAT EXCLUSIVE</td>
-            <td className="border border-gray-400 p-2">{formatNumber(grandExclusive)}</td>
-          </tr>
-          <tr>
-            <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">VAT 18%</td>
-            <td className="border border-gray-400 p-2">{formatNumber(vat)}</td>
-          </tr>
-          <tr>
-            <td colSpan={5} className="border border-gray-400 p-2 font-bold text-right">TOTAL</td>
-            <td className="border border-gray-400 p-2">{formatNumber(total)}</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   );
 }
